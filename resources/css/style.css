@@ -1,7 +1,54 @@
-.col-3 {
-    height: 300px;
-    margin: 10px;
+html, body {
+    margin: 0px;
+    padding: 0px;
+    background: url("../img/background.jpg") black;
+    background-size: cover;
 }
 .row {
     padding: 10px;
+}
+
+.list {
+    margin: 10px;
+    background-color: black!important;
+    border: 1px solid white;
+    color: white;
+    border-radius: 5px;
+    padding: 12px;
+}
+
+.task-list {
+    list-style: none;
+    padding-left: 16px;
+    height: 218px!important;
+    overflow-y: auto;
+    margin-top: 16px!important;
+}
+
+.task {
+    margin: 10px 0px;
+}
+small {
+    display: block;
+}
+
+.date {
+    font-size: .725em;
+}
+
+/* Scrollbar */
+
+.task-list::-webkit-scrollbar {
+    width: 18px;               /* width of the entire scrollbar */
+}
+.task-list::-webkit-scrollbar-track {
+    background: white;        /* color of the tracking area */
+    /*box-shadow: inset 0 0 5px black;*/
+    border-radius: 9px;
+    padding: 10px;
+}
+.task-list::-webkit-scrollbar-thumb {
+    background-color: black;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 5px solid white;  /* creates padding around scroll thumb */
 }
