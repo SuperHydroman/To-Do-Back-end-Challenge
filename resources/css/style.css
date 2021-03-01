@@ -1,9 +1,15 @@
 html, body {
     margin: 0px;
     padding: 0px;
-    background: url("../img/background.jpg") black;
     background-size: cover;
+    background: url("../img/background.jpg") black;
 }
+
+#main-container {
+    padding-top: 69px;
+    padding-bottom: 15px;
+}
+
 .row {
     padding: 10px;
 }
@@ -30,6 +36,10 @@ html, body {
 }
 small {
     display: block;
+}
+
+nav {
+    background-color: black;
 }
 
 .date {

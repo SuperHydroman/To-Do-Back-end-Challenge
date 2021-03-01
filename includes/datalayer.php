@@ -35,7 +35,7 @@ function getListOwner($id) {
     $stmt->bindParam(":id", $id);
     $stmt->execute();
     $result = $stmt->fetch();
-//    $conn = null;
+    $conn = null;
     return $result;
 }
 
@@ -59,3 +59,22 @@ function getAllUsers() {
     $conn = null;
     return $result;
 }
+
+
+// All create functions will be listed below
+
+function createList($data) {
+    $conn = createDatabaseConnection();
+    $sql = "INSERT INTO lists (`title`, `belongsToUser`, `taskAmount`, `dateCreated`) VALUES (:title, :belongsToUser, :taskAmount, :dateCreated)";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(array(
+        ':title' => $data['title'],
+        ':belongsToUser' => $data['belongsToUser'],
+        ':taskAmount' => $data['taskAmount'],
+        ':dateCreated' => $data['dateCreated']
+    ));
+    $conn = null;
+}
+
+
+//SELECT users.id, users.name, COUNT(task_table.id) FROM users LEFT JOIN task_table ON task_table.belongsToUser = users.id GROUP BY users.id, users.name
