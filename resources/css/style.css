@@ -46,19 +46,31 @@ nav {
     font-size: .725em;
 }
 
+.fas.fa-pen {
+    font-size: 9px;
+    transform: translate(-73%, -34%);
+}
+
+.far.fa-clipboard {
+    margin-right: -8px;
+}
+
+.login-register>.nav-item>a {
+    color: rgba(255, 255, 255, 1)!important;
+}
+
 /* Scrollbar */
 
 .task-list::-webkit-scrollbar {
-    width: 18px;               /* width of the entire scrollbar */
+    width: 18px;                    /* width of the entire scrollbar */
 }
 .task-list::-webkit-scrollbar-track {
-    background: white;        /* color of the tracking area */
-    /*box-shadow: inset 0 0 5px black;*/
+    background: white;              /* color of the tracking area */
     border-radius: 9px;
     padding: 10px;
 }
 .task-list::-webkit-scrollbar-thumb {
-    background-color: black;    /* color of the scroll thumb */
-    border-radius: 20px;       /* roundness of the scroll thumb */
-    border: 5px solid white;  /* creates padding around scroll thumb */
+    background-color: black;            /* color of the scroll thumb */
+    border-radius: 20px;            /* roundness of the scroll thumb */
+    border: 5px solid white;        /* creates padding around scroll thumb */
 }

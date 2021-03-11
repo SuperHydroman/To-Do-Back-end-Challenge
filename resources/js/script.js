@@ -1,15 +1,11 @@
-// var test2 = [];
-// test2[0] = document.getElementById("inputState");
-// console.log(test2[0].children[0].selected);
-
-var input = document.getElementById("inputState");
+var input = document.getElementById("taskAmount");
 var currentInputs = 0;
 var labelCounter = 1;
-
 input.onchange = setTaskAmount;
 
 function setTaskAmount() {
-    let optionText = this.children[this.options.selectedIndex].innerHTML;
+
+    let optionText = this.children[this.options.selectedIndex].value;
 
     if (optionText > currentInputs) {
 
@@ -17,6 +13,8 @@ function setTaskAmount() {
         currentInputs = optionText;
 
         for (let i = 1; i <= remainingInputs; i++) {
+            let createRowGroup = document.createElement("DIV");
+
             let createGroupDiv = document.createElement("DIV");
             let createLabel = document.createElement("LABEL");
             let createInput = document.createElement("INPUT");
@@ -25,30 +23,37 @@ function setTaskAmount() {
             let createTimeLabel = document.createElement("LABEL");
             let createTimeInput = document.createElement("INPUT");
 
+            createRowGroup.id = "task-"+labelCounter+"-group";
+            createRowGroup.classList.add("form-row", "text-white", "justify-content-center");
+
             createGroupDiv.classList.add("form-group", "col-md-7");
 
-            createInput.id = "task-"+i;
+            createInput.id = "task-"+labelCounter;
+            createInput.name = "tasks["+labelCounter+"]";
             createInput.classList.add("form-control");
             createInput.placeholder = "Wat is de taak?";
             createInput.type = "text";
 
-            createLabel.innerHTML = "Taak " + labelCounter;
-            createLabel.setAttribute("for", "task-"+i);
+            createLabel.innerHTML = "Task " + labelCounter;
+            createLabel.setAttribute("for", "task-"+labelCounter);
 
             createTimeGroupDiv.classList.add("form-group", "col-md-4");
 
             createTimeInput.type = "time";
+            createTimeInput.name = "taskTimes["+labelCounter+"]";
             createTimeInput.id = "time-task-" + labelCounter;
             createTimeInput.classList.add("form-control");
             createTimeInput.setAttribute("step", 1);
 
             createTimeLabel.innerHTML = "Hoelang doet u over de taak? <i id='timeTooltip' class=\"far fa-question-circle\" data-placement=\"right\" data-toggle=\"tooltip\" data-html=\"true\" title=\"<b>The format is: hours/minutes/seconds</b>\"></i>";
 
-            document.getElementById("task-container").appendChild(createGroupDiv);
+            document.getElementById("task-container").append(createRowGroup);
+
+            createRowGroup.appendChild(createGroupDiv);
             createGroupDiv.appendChild(createLabel);
             createGroupDiv.appendChild(createInput);
 
-            document.getElementById("task-container").appendChild(createTimeGroupDiv);
+            createRowGroup.appendChild(createTimeGroupDiv);
             createTimeGroupDiv.appendChild(createTimeLabel);
             createTimeGroupDiv.appendChild(createTimeInput);
 
@@ -59,6 +64,14 @@ function setTaskAmount() {
             labelCounter++;
         }
     }
-}
+    else if (optionText < currentInputs) {
+        let removeInputs = currentInputs - optionText;
+        currentInputs = optionText;
 
-// Now remove unecessary inputs. Or make them invisible. So for example when user changes from 5 to 2 inputs. Then 3 inputs will be removed.
+        for (let i = 0; i < removeInputs; i++) {
+            let parent = document.getElementById("task-container");
+            parent.removeChild(parent.lastChild);
+            labelCounter--;
+        }
+    }
+}

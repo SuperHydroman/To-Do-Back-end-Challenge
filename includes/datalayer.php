@@ -1,7 +1,8 @@
 <?php
 
-require "config.php";
+require_once "config.php";
 
+// Database connection
 function databaseConnection() {
 
     try {
@@ -18,6 +19,7 @@ function databaseConnection() {
 
 }
 
+// All getters will be listed below
 function getAllLists() {
     $conn = databaseConnection();
     $sql = "SELECT * FROM lists";
@@ -30,7 +32,7 @@ function getAllLists() {
 
 function getListOwner($id) {
     $conn = databaseConnection();
-    $sql = "SELECT * FROM users WHERE id = (SELECT belongsToUser FROM lists WHERE belongsToUser=:id)";
+    $sql = "SELECT * FROM users WHERE id = (SELECT DISTINCT belongsToUser FROM lists WHERE belongsToUser=:id)";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(":id", $id);
     $stmt->execute();
@@ -41,7 +43,7 @@ function getListOwner($id) {
 
 function getAllTasksForUser($id) {
     $conn = databaseConnection();
-    $sql = "SELECT * FROM task_table WHERE belongsToUser = (SELECT id FROM users WHERE id = :id)";
+    $sql = "SELECT * FROM tasks WHERE belongsToUser = (SELECT id FROM users WHERE id = :id)";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(":id", $id);
     $stmt->execute();
@@ -60,21 +62,58 @@ function getAllUsers() {
     return $result;
 }
 
+function getCurrentDate() {
+    date_default_timezone_set("Europe/Amsterdam");
+    $date = date("Y-m-d H:i:s");
 
-// All create functions will be listed below
+    return $date;
+}
 
+// All creators will be listed below
 function createList($data) {
-    $conn = createDatabaseConnection();
-    $sql = "INSERT INTO lists (`title`, `belongsToUser`, `taskAmount`, `dateCreated`) VALUES (:title, :belongsToUser, :taskAmount, :dateCreated)";
+    $conn = databaseConnection();
+    $date = getCurrentDate();
+    $sql = "INSERT INTO lists (`title`, `belongsToUser`, `taskAmount`, `dateCreated`) VALUES (:title, 1, :taskAmount, :dateCreated)";
     $stmt = $conn->prepare($sql);
     $stmt->execute(array(
         ':title' => $data['title'],
-        ':belongsToUser' => $data['belongsToUser'],
         ':taskAmount' => $data['taskAmount'],
-        ':dateCreated' => $data['dateCreated']
+        ':dateCreated' => $date
     ));
+    $conn = null;
+
+    if ($data['taskAmount'] > 0) {
+        unset($data["title"]);
+        createTask($data);
+    }
+}
+
+function createTask($data) {
+    $conn = databaseConnection();
+
+    var_dump($data);
+
+    for ($i = 1; $i <= $data['taskAmount']; $i++) {
+        $sql = "INSERT INTO `tasks`(`task`, `duration`, `belongsToUser`, `belongsToList`) VALUES (:task, :taskDuration, 1, :listID)";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(array(
+            ':task' => $data['tasks'][$i],
+            ':taskDuration' => $data['taskTimes'][$i],
+            ':listID' => $data['listID']
+        ));
+    }
+
     $conn = null;
 }
 
+//function createTask($data) {
+//    $conn = databaseConnection();
+//
+//    if ($data['taskAmount'] > 0) {
+//        for ($i = 1; $i < $data['taskAmount']; $i++);
+//    }
+//
+//    $conn = null;
+//}
 
 //SELECT users.id, users.name, COUNT(task_table.id) FROM users LEFT JOIN task_table ON task_table.belongsToUser = users.id GROUP BY users.id, users.name
