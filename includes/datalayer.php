@@ -19,6 +19,7 @@ function databaseConnection() {
 
 }
 
+
 // All getters will be listed below
 function getAllLists() {
     $conn = databaseConnection();
@@ -69,6 +70,7 @@ function getCurrentDate() {
     return $date;
 }
 
+
 // All creators will be listed below
 function createList($data) {
     $conn = databaseConnection();
@@ -106,14 +108,47 @@ function createTask($data) {
     $conn = null;
 }
 
-//function createTask($data) {
-//    $conn = databaseConnection();
-//
-//    if ($data['taskAmount'] > 0) {
-//        for ($i = 1; $i < $data['taskAmount']; $i++);
-//    }
-//
-//    $conn = null;
-//}
 
-//SELECT users.id, users.name, COUNT(task_table.id) FROM users LEFT JOIN task_table ON task_table.belongsToUser = users.id GROUP BY users.id, users.name
+// All updaters will be listed below
+
+
+// All deleters will be listed below
+function deleteTask($data) {
+    $conn = databaseConnection();
+    $sql = "DELETE FROM `tasks` WHERE id = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(array(
+        ':id' => $data['id']
+    ));
+    $conn= null;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//JOIN QUERY!!      SELECT users.id, users.name, COUNT(task_table.id) FROM users LEFT JOIN task_table ON task_table.belongsToUser = users.id GROUP BY users.id, users.name

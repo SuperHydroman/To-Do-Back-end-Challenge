@@ -7,9 +7,9 @@ $maxTasks = 5;
 $prefix = "-------------------------------------------------------------------";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $_POST += $id;
-    var_dump($_POST);
-//    createTask($_POST);
+    $_POST['listID'] = $id;
+    createTask($_POST);
+    header("refresh:3;url=".ROOT_URL."index.php");
 }
 ?>
     <title>Adding a new task</title>
@@ -17,7 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <body>
 <?php
 require ROOT_DIR."/includes/nav_bar.php";
-var_dump($_SERVER["PHP_SELF"]."?id=".$id);
 ?>
     <div id="main-container" class="more-height container border border-top-0 border-white">
         <div class="title text-white text-center border-bottom border-3 border-white">

@@ -25,7 +25,10 @@ require ROOT_DIR."/includes/nav_bar.php";
                     '<div class="task-container">',
                         '<ul class="task-list">';
                         foreach ($tasksPerOwner as $task) {
-                            echo '<li class="task">'.$task['task'].'</li>';
+                            echo '<div>',
+                                    '<li class="task">'.$task['task'].'</li>',
+                                    '<a class="text-white" href="'.ROOT_URL.'pages/deleteTask.php?id='.$task['id'].'"><i class="fas fa-trash-alt"></i></a>',
+                                '</div>';
                         }
                         echo '<li>',
                                 '<a href="'.ROOT_URL.'pages/createTask.php?id='.$list['id'].'"><i class="fas fa-plus"></i> Add task</a>',
