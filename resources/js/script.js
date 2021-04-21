@@ -31,7 +31,7 @@ function setTaskAmount() {
             createInput.id = "task-"+labelCounter;
             createInput.name = "tasks["+labelCounter+"]";
             createInput.classList.add("form-control");
-            createInput.placeholder = "Wat is de taak?";
+            createInput.placeholder = "What is the task?";
             createInput.type = "text";
 
             createLabel.innerHTML = "Task " + labelCounter;
@@ -45,7 +45,7 @@ function setTaskAmount() {
             createTimeInput.classList.add("form-control");
             createTimeInput.setAttribute("step", 1);
 
-            createTimeLabel.innerHTML = "Hoelang doet u over de taak? <i id='timeTooltip' class=\"far fa-question-circle\" data-placement=\"right\" data-toggle=\"tooltip\" data-html=\"true\" title=\"<b>The format is: hours/minutes/seconds</b>\"></i>";
+            createTimeLabel.innerHTML = "How much time do you need? <i id='timeTooltip' class=\"far fa-question-circle\" data-placement=\"right\" data-toggle=\"tooltip\" data-html=\"true\" title=\"<b>The format is: hours/minutes/seconds</b>\"></i>";
 
             document.getElementById("task-container").append(createRowGroup);
 

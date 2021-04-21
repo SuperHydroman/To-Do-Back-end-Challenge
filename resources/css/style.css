@@ -1,13 +1,18 @@
 html, body {
     margin: 0px;
     padding: 0px;
+    background: black url(../img/background.jpg) no-repeat;
     background-size: cover;
-    background: url("../img/background.jpg") black;
 }
 
 #main-container {
     padding-top: 69px;
     padding-bottom: 15px;
+}
+
+h2 {
+    width: 91%;
+    margin: 0 auto;
 }
 
 .row {
@@ -62,6 +67,22 @@ nav {
     display: inline;
 }
 
+#DDContainer {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+}
+
+#cardDD, #cardDD:focus {
+    background-color: transparent;
+    border: none!important;
+    color: #fff;
+}
+
+#cardDD::before {
+    display: none;
+}
+
 .login-register>.nav-item>a {
     color: rgba(255, 255, 255, 1)!important;
 }
@@ -69,10 +90,6 @@ nav {
 #AreYouSure {
     width: 25%;
 }
-
-/*#feedback {*/
-    /*display: none;*/
-/*}*/
 
 /* Scrollbar */
 
