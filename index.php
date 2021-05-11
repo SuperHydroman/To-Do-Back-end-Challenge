@@ -29,7 +29,7 @@ require ROOT_DIR."/includes/nav_bar.php";
                                     '<a class="dropdown-item" href="'.ROOT_URL.'pages/updateList.php?LID='.$list['id'].'&UID='.$listOwner['id'].'">Edit list</a>',
                                     '<a class="dropdown-item" href="'.ROOT_URL.'pages/deleteList.php?id='.$list['id'].'">Delete list</a>',
                                     '<div class="dropdown-divider"></div>',
-                                    '<a class="dropdown-item" href="#">More information</a>',
+                                    '<a class="dropdown-item" href="pages/details.php?id='.$list['id'].'">More information</a>',
                                 '</div>',
                             '</div>',
                         '</div>',
