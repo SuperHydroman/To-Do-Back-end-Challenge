@@ -15,15 +15,23 @@ h2 {
     margin: 0 auto;
 }
 
-table, th, td {
-    border: 1px solid white;
+#table, th, td {
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-collapse: collapse;
 }
 
-table {
+#table {
     width: 100%;
     color: white;
     margin-top:35px;
+}
+
+#table tr:nth-child(even) > td {
+    background-color: #525252;
+}
+
+#table tr:nth-child(odd) > td {
+    background-color: #414141;
 }
 
 #action-pen, #action-can {
@@ -40,7 +48,7 @@ th, td {
 }
 
 th {
-    background-color: #464646;
+    background-color: #2b2b2b;
 }
 
 .row {
