@@ -61,13 +61,14 @@ th {
     padding-left: 16px;
     height: 218px!important;
     overflow-y: auto;
+    /*overflow-y: scroll;*/
     margin-top: 16px!important;
 }
 
 .task {
     margin: 10px 0px;
     display: inline-block;
-    width: 185px;
+    width: 166px;
 }
 small {
     display: block;

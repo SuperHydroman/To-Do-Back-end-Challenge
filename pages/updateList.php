@@ -52,7 +52,7 @@ require ROOT_DIR."/includes/nav_bar.php";
                     <div class="justify-content-around text-white col-md-6 pb-3">
                         <div class="form-group col-md-12">
                             <label for="newTitle">Name</label>
-                            <input name="newTitle" type="text" class="form-control" id="newTitle" placeholder="Naam van de lijst" value="">
+                            <input name="newTitle" type="text" class="form-control" id="newTitle" placeholder="New list name">
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@ require ROOT_DIR."/includes/nav_bar.php";
                                     '</div>',
                                     '<div class="form-group col-md-6">',
                                         '<label>How much time do you need? <i id="timeTooltip" class="far fa-question-circle" data-placement="right" data-toggle="tooltip" data-html="true" title="" aria-hidden="true" data-original-title="<b>The format is: hours/minutes/seconds</b>"></i><span class="sr-only"><b>The format is: hours/minutes/seconds</b></span></label>',
-                                        '<input disabled type="time" value="'.$taskCounter['duration'].'" name="newDuration[]" id="time-task-1" class="form-control" step="1">',
+                                        '<input disabled type="time" value="'.$taskCounter['duration'].'" id="time-task-1" class="form-control" step="1">',
                                     '</div>',
                                 '</div>';
                             $taskCounter++;
@@ -82,7 +82,7 @@ require ROOT_DIR."/includes/nav_bar.php";
                                     '<input name="taskID[]" value="'.$task['id'].'" id="newName" class="form-control d-none">',
                                     '<div class="form-group col-md-6">',
                                         '<label for="newName">Task '.$taskCounter.'</label>',
-                                        '<input name="newName[]" id="newName" class="form-control">',
+                                        '<input name="newName[]" id="newName" class="form-control" placeholder="New name for your task?">',
                                     '</div>',
                                     '<div class="form-group col-md-6">',
                                         '<label>How much time do you need? <i id="timeTooltip" class="far fa-question-circle" data-placement="right" data-toggle="tooltip" data-html="true" title="" aria-hidden="true" data-original-title="<b>The format is: hours/minutes/seconds</b>"></i><span class="sr-only"><b>The format is: hours/minutes/seconds</b></span></label>',

@@ -38,7 +38,7 @@ require ROOT_DIR."/includes/nav_bar.php";
                 foreach ($tasksPerList as $task) {
                     echo '<div>',
                             '<li class="task">'.$task['task'].'</li>',
-                                '<a class="text-white" href="'.ROOT_URL.'pages/deleteTask.php?id='.$task['id'].'"><i class="fas fa-trash-alt"></i></a>',
+                                '<a class="text-white" href="'.ROOT_URL.'pages/updateTask.php?LID='.$task['belongsToList'].'&TID='.$task['id'].'"><i id="action-pen" class="fas fa-pen"></i></a>     <a class="text-white" href="'.ROOT_URL.'pages/deleteTask.php?id='.$task['id'].'"><i class="fas fa-trash-alt"></i></a>',
                         '</div>';
                 }
                     echo '<li>',
@@ -60,3 +60,6 @@ require ROOT_DIR."/includes/nav_bar.php";
 <?php
 require ROOT_DIR."/includes/footer.php";
 ?>
+
+
+<!--    5 keer uitgezoomd-->

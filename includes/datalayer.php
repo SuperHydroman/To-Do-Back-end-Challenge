@@ -86,6 +86,19 @@ function getAllTasksForList($id) {
     return $result;
 }
 
+function getSingleTaskForList($data) {
+    $conn = databaseConnection();
+    $sql = "SELECT * FROM tasks WHERE belongsToList = (SELECT id FROM lists WHERE id = :lid) AND id = :tid";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(array(
+        ':lid' => $data['LID'],
+        ':tid' => $data['TID']
+    ));
+    $result = $stmt->fetch();
+    $conn = null;
+    return $result;
+}
+
 function getAllUsers() {
     $conn = databaseConnection();
     $sql = "SELECT * FROM users";
@@ -102,6 +115,7 @@ function getCurrentDate() {
 
     return $date;
 }
+
 
 // All creators will be listed below
 function createList($data) {
@@ -158,6 +172,23 @@ function updateList($data) {
     }
 }
 
+function updateSingleTask($data) {
+    $conn = databaseConnection();
+
+    $sql = "UPDATE `tasks` SET `task`=:newName,`duration`=:newDuration WHERE id = :TID";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(array(
+        ':newName' => $data['newName'],
+        ':newDuration' => $data['newDuration'],
+        ':TID' => $data['url_data']['TID']
+    ));
+
+//    KURKKKKK123
+//    10:00:00
+
+    $conn = null;
+}
+
 function updateTasks($data) {
     $conn = databaseConnection();
 
@@ -173,6 +204,7 @@ function updateTasks($data) {
 
     $conn = null;
 }
+
 
 // All deleters will be listed below
 function deleteList($data) {
